@@ -1,0 +1,16 @@
+{
+    "Move": {
+        "desc": "This action enables the agent to move from one location to another in the specified direction. For example, the agent can move from location A to location B if they are connected in that direction and there is no closed door between them.",
+        "extra_info": []
+    },
+    
+    "Open a Door": {
+        "desc": "This action enables the agent to open a closed door between two locations, allowing movement between them. For example, if there is a closed door between location A and location B, the agent at location A can open it, making it possible to move to location B.",
+        "extra_info": []
+    },
+
+    "Pick a Coin": {
+        "desc": "This action enables the agent to pick up a coin once it is in the same room where the coin is located. For example, if the agent is in location C, and a coin is found in the same location, the agent can pick up the coin, achieving the goal of collecting it.",
+        "extra_info": []
+    }
+}

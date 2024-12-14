@@ -1,0 +1,14 @@
+{
+    "hierarchy": {
+      "location": [],
+      "direction": []
+    },
+    "requirements": [
+      "typing",
+      "negative-preconditions",
+      "disjunctive-preconditions",
+      "conditional-effects",
+      "equality"
+    ]
+  }
+  
