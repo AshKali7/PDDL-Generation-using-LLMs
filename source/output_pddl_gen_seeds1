@@ -1,0 +1,263 @@
+python run_coin.py --model gpt-4-1106-preview --method pddl --split dev  --oc 
+obs : You are in the kitchen. In one part of the room you see a stove. There is also an oven. You also see a fridge that is closed. In another part of the room you see a counter, that has nothing on it. In one part of the room you see a kitchen cupboard that is closed. There is also a cutlery drawer that is closed. You also see a trash can that is closed. In another part of the room you see a dishwasher that is closed. In one part of the room you see a dining chair, that has nothing on it. 
+To the North you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+infos : {'observation': 'You are in the kitchen. In one part of the room you see a stove. There is also an oven. You also see a fridge that is closed. In another part of the room you see a counter, that has nothing on it. In one part of the room you see a kitchen cupboard that is closed. There is also a cutlery drawer that is closed. You also see a trash can that is closed. In another part of the room you see a dishwasher that is closed. In one part of the room you see a dining chair, that has nothing on it. \nTo the North you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. ', 'look': 'You are in the kitchen. In one part of the room you see a stove. There is also an oven. You also see a fridge that is closed. In another part of the room you see a counter, that has nothing on it. In one part of the room you see a kitchen cupboard that is closed. There is also a cutlery drawer that is closed. You also see a trash can that is closed. In another part of the room you see a dishwasher that is closed. In one part of the room you see a dining chair, that has nothing on it. \nTo the North you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. ', 'inventory': 'Inventory: \n  Your inventory is currently empty.\n', 'validActions': ['move east', 'open door to east', 'move north', 'inventory', 'look around', 'open door to north', 'move west', 'close door to east', 'close door to north'], 'scoreRaw': 0.0, 'score': 0.0, 'tasksuccess': False, 'taskfailure': False, 'reward': 0, 'done': False, 'numMoves': 0, 'taskDescription': 'Your task is to search the environment and find the coin.  Once you find the coin, take it.'}
+Gold path: ['look around', 'open door to north', 'open door to east', 'move north', 'open door to west', 'move west', 'open door to south', 'move south', 'open door to south', 'open door to west', 'move west', 'open door to south', 'move north', 'move south', 'move north', 'move south', 'move north', 'move south', 'move north', 'move south', 'move west', 'open door to west', 'move west', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+Step 0
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen l1 l2 corridor - location
+    north east west - direction
+  )
+  (:init
+    (at kitchen)
+    (visited kitchen)
+    (connected kitchen l1 north)
+    (closed_door kitchen l1)
+    (connected kitchen l2 east)
+    (closed_door kitchen l2)
+    (connected kitchen corridor west)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen l1 l2 corridor - location\n    north east west - direction\n  )\n  (:init\n    (at kitchen)\n    (visited kitchen)\n    (connected kitchen l1 north)\n    (closed_door kitchen l1)\n    (connected kitchen l2 east)\n    (closed_door kitchen l2)\n    (connected kitchen corridor west)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/59e5ad06-c311-4203-ac8f-f3a1f423d54e?external=True'}
+resp[] /check/59e5ad06-c311-4203-ac8f-f3a1f423d54e?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(MOVE KITCHEN CORRIDOR WEST)\n(REACH-GOAL)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 8 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 8\n\t#Fluents: 9\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[0 / 0]--\n--[0 / 2]--\nTotal time: 6.49999e-05\nNodes generated during search: 5\nNodes expanded during search: 2\nPlan found with cost: 2\nFast-BFS search completed in 6.49999e-05 secs\n'}
+actions ['(move kitchen corridor west)', '(reach-goal)']
+before map actions ['(move kitchen corridor west)']
+after map actions ['move west']
+> move west
+Action: move west
+You are in the corridor. To the North you see a closed wood door. To the South you see a closed wood door. To the East you see the kitchen. To the West you see a closed patio door. 
+Step 1
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen corridor l3 l4 patio - location
+    north south east west - direction
+  )
+  (:init
+    (at corridor)
+    (visited kitchen)
+    (visited corridor)
+    (connected kitchen corridor east)
+    (connected corridor kitchen east)
+    (connected corridor l3 north)
+    (closed_door corridor l3)
+    (connected corridor l4 south)
+    (closed_door corridor l4)
+    (connected corridor patio west)
+    (closed_door corridor patio)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen corridor l3 l4 patio - location\n    north south east west - direction\n  )\n  (:init\n    (at corridor)\n    (visited kitchen)\n    (visited corridor)\n    (connected kitchen corridor east)\n    (connected corridor kitchen east)\n    (connected corridor l3 north)\n    (closed_door corridor l3)\n    (connected corridor l4 south)\n    (closed_door corridor l4)\n    (connected corridor patio west)\n    (closed_door corridor patio)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/b81b8a0a-d8e4-4e53-b9e8-66b3cb8d61a9?external=True'}
+resp[] /check/b81b8a0a-d8e4-4e53-b9e8-66b3cb8d61a9?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(OPEN_DOOR CORRIDOR L4)\n(MOVE CORRIDOR L4 SOUTH)\n(REACH-GOAL)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 11 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 11\n\t#Fluents: 12\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[1 / 2]--\n--[0 / 0]--\n--[0 / 1]--\nTotal time: 8.60002e-05\nNodes generated during search: 12\nNodes expanded during search: 6\nPlan found with cost: 3\nFast-BFS search completed in 8.60002e-05 secs\n'}
+actions ['(open_door corridor l4)', '(move corridor l4 south)', '(reach-goal)']
+before map actions ['(open_door corridor l4)', '(move corridor l4 south)']
+after map actions ['open door to south', 'move south']
+> open door to south
+Action: open door to south
+You open the wood door, revealing the bedroom. 
+Step 2
+> move south
+Action: move south
+You are in the bedroom. Through an open wood door, to the North you see the corridor. To the West you see a closed wood door. 
+Step 3
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen corridor bedroom l5 - location
+    north south east west - direction
+  )
+  (:init
+    (at bedroom)
+    (visited kitchen)
+    (visited corridor)
+    (visited bedroom)
+    (connected bedroom corridor north)
+    (connected kitchen corridor east)
+    (connected corridor kitchen east)
+    (connected corridor bedroom south)
+    (connected bedroom l5 west)
+    (closed_door bedroom l5)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen corridor bedroom l5 - location\n    north south east west - direction\n  )\n  (:init\n    (at bedroom)\n    (visited kitchen)\n    (visited corridor)\n    (visited bedroom)\n    (connected bedroom corridor north)\n    (connected kitchen corridor east)\n    (connected corridor kitchen east)\n    (connected corridor bedroom south)\n    (connected bedroom l5 west)\n    (closed_door bedroom l5)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/4b2e0490-da92-4c0f-b008-91d9cfd7b080?external=True'}
+resp[] /check/4b2e0490-da92-4c0f-b008-91d9cfd7b080?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(OPEN_DOOR BEDROOM L5)\n(MOVE BEDROOM L5 WEST)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 6 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 6\n\t#Fluents: 6\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[0 / 0]--\n--[0 / 2]--\nTotal time: 6.39992e-05\nNodes generated during search: 6\nNodes expanded during search: 3\nPlan found with cost: 2\nFast-BFS search completed in 6.39992e-05 secs\n'}
+actions ['(open_door bedroom l5)', '(move bedroom l5 west)']
+before map actions ['(open_door bedroom l5)', '(move bedroom l5 west)']
+after map actions ['open door to west', 'move west']
+> open door to west
+Action: open door to west
+You open the wood door, revealing the living room. 
+Step 4
+> move west
+Action: move west
+You are in the living room. To the North you see a closed screen door. Through an open wood door, to the East you see the bedroom. 
+Step 5
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen corridor bedroom living_room l6 - location
+    north south east west - direction
+  )
+  (:init
+    (at living_room)
+    (visited kitchen)
+    (visited corridor)
+    (visited bedroom)
+    (visited living_room)
+    (connected bedroom living_room east)
+    (connected living_room bedroom west)
+    (connected living_room l6 north)
+    (closed_door living_room l6)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen corridor bedroom living_room l6 - location\n    north south east west - direction\n  )\n  (:init\n    (at living_room)\n    (visited kitchen)\n    (visited corridor)\n    (visited bedroom)\n    (visited living_room)\n    (connected bedroom living_room east)\n    (connected living_room bedroom west)\n    (connected living_room l6 north)\n    (closed_door living_room l6)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/5e1f5df5-5edb-4120-b1c4-8031d9242651?external=True'}
+resp[] /check/5e1f5df5-5edb-4120-b1c4-8031d9242651?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(OPEN_DOOR LIVING_ROOM L6)\n(MOVE LIVING_ROOM L6 NORTH)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 4 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 4\n\t#Fluents: 5\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[0 / 0]--\n--[0 / 2]--\nTotal time: 6.10004e-05\nNodes generated during search: 5\nNodes expanded during search: 3\nPlan found with cost: 2\nFast-BFS search completed in 6.10004e-05 secs\n'}
+actions ['(open_door living_room l6)', '(move living_room l6 north)']
+before map actions ['(open_door living_room l6)', '(move living_room l6 north)']
+after map actions ['open door to north', 'move north']
+> open door to north
+Action: open door to north
+You open the screen door, revealing the backyard. 
+Step 6
+> move north
+Action: move north
+You are in the backyard. To the North you see the driveway. Through an open screen door, to the South you see the living room. To the East you see a closed patio door. To the West you see the street. 
+Step 7
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen corridor bedroom living_room backyard driveway patio street - location
+    north south east west - direction
+  )
+  (:init
+    (at backyard)
+    (visited kitchen)
+    (visited corridor)
+    (visited bedroom)
+    (visited living_room)
+    (visited backyard)
+    (connected living_room backyard south)
+    (connected backyard living_room north)
+    (connected backyard driveway north)
+    (connected backyard patio east)
+    (closed_door backyard patio)
+    (connected backyard street west)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen corridor bedroom living_room backyard driveway patio street - location\n    north south east west - direction\n  )\n  (:init\n    (at backyard)\n    (visited kitchen)\n    (visited corridor)\n    (visited bedroom)\n    (visited living_room)\n    (visited backyard)\n    (connected living_room backyard south)\n    (connected backyard living_room north)\n    (connected backyard driveway north)\n    (connected backyard patio east)\n    (closed_door backyard patio)\n    (connected backyard street west)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/9bb6dad7-0527-437b-9f44-470dde96db4d?external=True'}
+resp[] /check/9bb6dad7-0527-437b-9f44-470dde96db4d?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(MOVE BACKYARD STREET WEST)\n(REACH-GOAL)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 9 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 9\n\t#Fluents: 8\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[0 / 0]--\n--[0 / 1]--\nTotal time: 9.1e-05\nNodes generated during search: 6\nNodes expanded during search: 3\nPlan found with cost: 2\nFast-BFS search completed in 9.1e-05 secs\n'}
+actions ['(move backyard street west)', '(reach-goal)']
+before map actions ['(move backyard street west)']
+after map actions ['move west']
+> move west
+Action: move west
+You are in the street. To the East you see the backyard. To the West you see a closed sliding door. 
+Step 8
+Printing pf: (define (problem exploration)
+  (:domain environment)
+  (:objects
+    kitchen corridor bedroom living_room backyard street l7 - location
+    east west - direction
+  )
+  (:init
+    (at street)
+    (visited kitchen)
+    (visited corridor)
+    (visited bedroom)
+    (visited living_room)
+    (visited backyard)
+    (visited street)
+    (connected backyard street east)
+    (connected street backyard west)
+    (connected street l7 west)
+    (closed_door street l7)
+  )
+  (:goal 
+    (exists (?x - location)
+        (and
+            (not (visited ?x))
+            (at ?x)
+        )
+    )
+  )
+)
+Printing data:  {'domain': '(define (domain environment)\n  (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)\n  (:types\n    location\n    direction\n  )\n  (:predicates\n    (at ?loc - location)\n    (visited ?loc - location)\n    (connected ?loc1 - location ?loc2 - location ?dir - direction)\n    (closed_door ?loc1 - location ?loc2 - location)\n  )\n\n  (:action move\n    :parameters (?loc1 - location ?loc2 - location ?dir - direction)\n    :precondition (and (at ?loc1) (connected ?loc1 ?loc2 ?dir) (not (closed_door ?loc1 ?loc2)))\n    :effect (and (not (at ?loc1)) (at ?loc2))\n  )\n\n  (:action open_door\n    :parameters (?loc1 - location ?loc2 - location)\n    :precondition (and (at ?loc1) (closed_door ?loc1 ?loc2))\n    :effect (not (closed_door ?loc1 ?loc2))\n  )\n)\n\n', 'problem': '(define (problem exploration)\n  (:domain environment)\n  (:objects\n    kitchen corridor bedroom living_room backyard street l7 - location\n    east west - direction\n  )\n  (:init\n    (at street)\n    (visited kitchen)\n    (visited corridor)\n    (visited bedroom)\n    (visited living_room)\n    (visited backyard)\n    (visited street)\n    (connected backyard street east)\n    (connected street backyard west)\n    (connected street l7 west)\n    (closed_door street l7)\n  )\n  (:goal \n    (exists (?x - location)\n        (and\n            (not (visited ?x))\n            (at ?x)\n        )\n    )\n  )\n)'}
+Output of job request {'result': '/check/cba35dce-8b86-4e2f-8dad-5093d938ee40?external=True'}
+resp[] /check/cba35dce-8b86-4e2f-8dad-5093d938ee40?external=True
+celery_result <Response [200]>
+Printing response: {'call': 'timeout 30 planutils run dual-bfws-ffparser -- domain problem plan', 'output': {'plan': '(OPEN_DOOR STREET L7)\n(MOVE STREET L7 WEST)\n'}, 'output_type': 'generic', 'stderr': '', 'stdout': ' --- OK.\n Match tree built with 4 nodes.\n\nPDDL problem description loaded: \n\tDomain: ENVIRONMENT\n\tProblem: EXPLORATION\n\t#Actions: 4\n\t#Fluents: 5\nGoals found: 1\nGoals_Edges found: 1\nStarting search with 1-BFWS...\n--[1 / 0]--\n--[1 / 1]--\n--[0 / 0]--\n--[0 / 2]--\nTotal time: 7.20001e-05\nNodes generated during search: 5\nNodes expanded during search: 3\nPlan found with cost: 2\nFast-BFS search completed in 7.20001e-05 secs\n'}
+actions ['(open_door street l7)', '(move street l7 west)']
+before map actions ['(open_door street l7)', '(move street l7 west)']
+after map actions ['open door to west', 'move west']
+> open door to west
+Action: open door to west
+You open the sliding door, revealing the supermarket. 
+Step 9
+> move west
+Action: move west
+You are in the supermarket. Through an open sliding door, to the East you see the street. 
+Step 10
+> take coin
+Action: take coin
+You take the coin.
+[10]
+1.0

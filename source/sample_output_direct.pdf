@@ -1,0 +1,472 @@
+Gold path: ['look around', 'open door to north', 'open door to east', 'move west', 'open door to north', 'open door to south', 'open door to west', 'move west', 'open door to south', 'move west', 'open door to west', 'move west', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+Step 0
+> move north
+Action: move north
+You can't move there, the door is closed. 
+Step 1
+> open door to north
+Action: open door to north
+You open the wood door, revealing the laundry room. 
+Step 2
+> move north
+Action: move north
+You are in the laundry room. Through an open wood door, to the South you see the kitchen. To the West you see a closed wood door. 
+Step 3
+> open door to west
+Action: open door to west
+You open the wood door, revealing the bathroom. 
+Step 4
+> move west
+Action: move west
+You are in the bathroom. To the South you see a closed wood door. Through an open wood door, to the East you see the laundry room. 
+Step 5
+> open door to south
+Action: open door to south
+You open the wood door, revealing the corridor. 
+Step 6
+> move south
+Action: move south
+You are in the corridor. Through an open wood door, to the North you see the bathroom. To the South you see a closed wood door. To the East you see the kitchen. To the West you see a closed patio door. 
+Step 7
+> open door to south
+Action: open door to south
+You open the wood door, revealing the bedroom. 
+Step 8
+> move south
+Action: move south
+You are in the bedroom. Through an open wood door, to the North you see the corridor. To the West you see a closed wood door. 
+Step 9
+> open door to west
+Action: open door to west
+You open the wood door, revealing the living room. 
+Step 10
+> move west
+Action: move west
+You are in the living room. To the North you see a closed screen door. Through an open wood door, to the East you see the bedroom. 
+Step 11
+> open door to north
+Action: open door to north
+You open the screen door, revealing the backyard. 
+Step 12
+> move north
+Action: move north
+You are in the backyard. To the North you see the driveway. Through an open screen door, to the South you see the living room. To the East you see a closed patio door. To the West you see the street. 
+Step 13
+> move north
+Action: move north
+You are in the driveway. To the South you see the backyard. 
+Step 14
+> move south
+Action: move south
+You are in the backyard. To the North you see the driveway. Through an open screen door, to the South you see the living room. To the East you see a closed patio door. To the West you see the street. 
+Step 15
+> move west
+Action: move west
+You are in the street. To the East you see the backyard. To the West you see a closed sliding door. 
+Step 16
+> open door to west
+Action: open door to west
+You open the sliding door, revealing the supermarket. 
+Step 17
+> move west
+Action: move west
+You are in the supermarket. Through an open sliding door, to the East you see the street. 
+Step 18
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to south', 'open door to west', 'move west', 'move east', 'move south', 'open door to west', 'move west', 'open door to south', 'move south', 'open door to south', 'open door to west', 'move south', 'move north', 'move west', 'open door to west', 'move east', 'move south', 'move north', 'move south', 'move north', 'move south', 'move north', 'move south', 'move north', 'move north', 'move east', 'move north', 'move south', 'move south', 'move north', 'move east', 'open door to north', 'move north', 'take coin']
+Action: look around
+You are in the kitchen. To the South you see a closed patio door. To the West you see a closed plain door. 
+Step 0
+> open door to west
+Action: open door to west
+You open the plain door, revealing the pantry. 
+Step 1
+> move west
+Action: move west
+You are in the pantry. Through an open plain door, to the East you see the kitchen. 
+Step 2
+> 
+Action: 
+Unknown action: I'm not sure what you mean.
+Step 3
+> move east
+Action: move east
+You are in the kitchen. To the South you see a closed patio door. Through an open plain door, to the West you see the pantry. 
+Step 4
+> open door to south
+Action: open door to south
+You open the patio door, revealing the backyard. 
+Step 5
+> move south
+Action: move south
+You are in the backyard. Through an open patio door, to the North you see the kitchen. To the South you see the driveway. To the East you see the street. To the West you see a closed patio door. 
+Step 6
+> move east
+Action: move east
+You are in the street. To the North you see a closed sliding door. To the West you see the backyard. 
+Step 7
+> open door to north
+Action: open door to north
+You open the sliding door, revealing the supermarket. 
+Step 8
+> move north
+Action: move north
+You are in the supermarket. Through an open sliding door, to the South you see the street. 
+Step 9
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to south', 'open door to east', 'open door to west', 'move east', 'move west', 'move north', 'open door to east', 'move south', 'move south', 'move north', 'move north', 'move south', 'move west', 'open door to north', 'move north', 'open door to north', 'move south', 'move north', 'move south', 'move north', 'move north', 'move south', 'move west', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see the living room. To the South you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see a closed sliding patio door. 
+Step 0
+> move north
+Action: move north
+You are in the living room. To the South you see the kitchen. To the East you see a closed wood door. To the West you see the corridor. 
+Step 1
+> move west
+Action: move west
+You are in the corridor. To the North you see a closed wood door. To the South you see a closed screen door. To the East you see the living room. To the West you see the driveway. 
+Step 2
+> move north
+Action: move north
+You can't move there, the door is closed. 
+Step 3
+> open door to north
+Action: open door to north
+You open the wood door, revealing the bathroom. 
+Step 4
+> move north
+Action: move north
+You are in the bathroom. Through an open wood door, to the South you see the corridor. 
+Step 5
+> move south
+Action: move south
+You are in the corridor. Through an open wood door, to the North you see the bathroom. To the South you see a closed screen door. To the East you see the living room. To the West you see the driveway. 
+Step 6
+> open door to south
+Action: open door to south
+You open the screen door, revealing the backyard. 
+Step 7
+> move south
+Action: move south
+You are in the backyard. Through an open screen door, to the North you see the corridor. To the East you see a closed sliding patio door. To the West you see the street. 
+Step 8
+> open door to east
+Action: open door to east
+You open the sliding patio door, revealing the kitchen. 
+Step 9
+> move east
+Action: move east
+You are in the kitchen. To the North you see the living room. To the South you see a closed wood door. To the East you see a closed frosted-glass door. Through an open sliding patio door, to the West you see the backyard. 
+Step 10
+> open door to east
+Action: open door to east
+You open the frosted-glass door, revealing the pantry. 
+Step 11
+> move east
+Action: move east
+You are in the pantry. Through an open frosted-glass door, to the West you see the kitchen. 
+Step 12
+> move west
+Action: move west
+You are in the kitchen. To the North you see the living room. To the South you see a closed wood door. Through an open frosted-glass door, to the East you see the pantry. Through an open sliding patio door, to the West you see the backyard. 
+Step 13
+> move south
+Action: move south
+You can't move there, the door is closed. 
+Step 14
+> open door to south
+Action: open door to south
+You open the wood door, revealing the laundry room. 
+Step 15
+> move south
+Action: move south
+You are in the laundry room. Through an open wood door, to the North you see the kitchen. 
+Step 16
+> move north
+Action: move north
+You are in the kitchen. To the North you see the living room. Through an open wood door, to the South you see the laundry room. Through an open frosted-glass door, to the East you see the pantry. Through an open sliding patio door, to the West you see the backyard. 
+Step 17
+> move north
+Action: move north
+You are in the living room. To the South you see the kitchen. To the East you see a closed wood door. To the West you see the corridor. 
+Step 18
+> open door to east
+Action: open door to east
+You open the wood door, revealing the bedroom. 
+Step 19
+> move east
+Action: move east
+You are in the bedroom. Through an open wood door, to the West you see the living room. 
+Step 20
+> move west
+Action: move west
+You are in the living room. To the South you see the kitchen. Through an open wood door, to the East you see the bedroom. To the West you see the corridor. 
+Step 21
+> move west
+Action: move west
+You are in the corridor. Through an open wood door, to the North you see the bathroom. Through an open screen door, to the South you see the backyard. To the East you see the living room. To the West you see the driveway. 
+Step 22
+> move west
+Action: move west
+You are in the driveway. To the South you see the street. To the East you see the corridor. 
+Step 23
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed plain door. To the South you see a closed wood door. To the East you see a closed screen door. 
+Step 0
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to north', 'open door to south', 'open door to east', 'move west', 'open door to north', 'open door to west', 'move north', 'open door to west', 'move south', 'move east', 'move south', 'move north', 'move west', 'move south', 'move north', 'move south', 'move north', 'move east', 'move south', 'move north', 'move east', 'move west', 'move east', 'move west', 'move west', 'move west', 'open door to north', 'move north', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed sliding patio door. To the South you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+Step 0
+> open door to north
+Action: open door to north
+You open the sliding patio door, revealing the backyard. 
+Step 1
+> move north
+Action: move north
+You are in the backyard. To the North you see the street. Through an open sliding patio door, to the South you see the kitchen. 
+Step 2
+> move north
+Action: move north
+You are in the street. To the North you see a closed sliding door. To the South you see the backyard. 
+Step 3
+> open door to north
+Action: open door to north
+You open the sliding door, revealing the supermarket. 
+Step 4
+> move north
+Action: move north
+You are in the supermarket. Through an open sliding door, to the South you see the street. 
+Step 5
+> 
+Action: 
+Unknown action: I'm not sure what you mean.
+Step 6
+> close door to south
+Action: close door to south
+You close the sliding door to the street. 
+Step 7
+> open door to south
+Action: open door to south
+You open the sliding door, revealing the street. 
+Step 8
+> move south
+Action: move south
+You are in the street. Through an open sliding door, to the North you see the supermarket. To the South you see the backyard. 
+Step 9
+> move south
+Action: move south
+You are in the backyard. To the North you see the street. Through an open sliding patio door, to the South you see the kitchen. 
+Step 10
+> move south
+Action: move south
+You are in the kitchen. Through an open sliding patio door, to the North you see the backyard. To the South you see a closed wood door. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+Step 11
+> open door to south
+Action: open door to south
+You open the wood door, revealing the laundry room. 
+Step 12
+> move south
+Action: move south
+You are in the laundry room. Through an open wood door, to the North you see the kitchen. 
+Step 13
+> move north
+Action: move north
+You are in the kitchen. Through an open sliding patio door, to the North you see the backyard. Through an open wood door, to the South you see the laundry room. To the East you see a closed frosted-glass door. To the West you see the corridor. 
+Step 14
+> open door to east
+Action: open door to east
+You open the frosted-glass door, revealing the pantry. 
+Step 15
+> move east
+Action: move east
+You are in the pantry. Through an open frosted-glass door, to the West you see the kitchen. 
+Step 16
+> move west
+Action: move west
+You are in the kitchen. Through an open sliding patio door, to the North you see the backyard. Through an open wood door, to the South you see the laundry room. Through an open frosted-glass door, to the East you see the pantry. To the West you see the corridor. 
+Step 17
+> move west
+Action: move west
+You are in the corridor. To the North you see a closed wood door. To the South you see the driveway. To the East you see the kitchen. To the West you see a closed wood door. 
+Step 18
+> open door to north
+Action: open door to north
+You open the wood door, revealing the bathroom. 
+Step 19
+> move north
+Action: move north
+You are in the bathroom. Through an open wood door, to the South you see the corridor. To the West you see a closed wood door. 
+Step 20
+> open door to west
+Action: open door to west
+You open the wood door, revealing the living room. 
+Step 21
+> move west
+Action: move west
+You are in the living room. To the South you see a closed wood door. Through an open wood door, to the East you see the bathroom. 
+Step 22
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to north', 'open door to south', 'open door to west', 'move east', 'open door to east', 'move east', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed wood door. To the South you see a closed patio door. To the East you see the living room. To the West you see a closed frosted-glass door. 
+Step 0
+> move east
+Action: move east
+You are in the living room. To the East you see a closed wood door. To the West you see the kitchen. 
+Step 1
+> open door to east
+Action: open door to east
+You open the wood door, revealing the bedroom. 
+Step 2
+> move east
+Action: move east
+You are in the bedroom. Through an open wood door, to the West you see the living room. 
+Step 3
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to north', 'move west', 'open door to south', 'open door to west', 'move east', 'move west', 'move south', 'open door to west', 'move west', 'open door to north', 'open door to west', 'move south', 'move north', 'move south', 'move north', 'move south', 'move north', 'move north', 'open door to west', 'move west', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed plain door. To the West you see the living room. 
+Step 0
+> open door to north
+Action: open door to north
+You open the plain door, revealing the pantry. 
+Step 1
+> move north
+Action: move north
+You are in the pantry. Through an open plain door, to the South you see the kitchen. 
+Step 2
+> 
+Action: 
+Unknown action: I'm not sure what you mean.
+Step 3
+> move south
+Action: move south
+You are in the kitchen. Through an open plain door, to the North you see the pantry. To the West you see the living room. 
+Step 4
+> move west
+Action: move west
+You are in the living room. To the South you see a closed screen door. To the East you see the kitchen. To the West you see a closed wood door. 
+Step 5
+> open door to west
+Action: open door to west
+You open the wood door, revealing the bathroom. 
+Step 6
+> move west
+Action: move west
+You are in the bathroom. To the South you see a closed wood door. Through an open wood door, to the East you see the living room. To the West you see a closed wood door. 
+Step 7
+> open door to west
+Action: open door to west
+You open the wood door, revealing the laundry room. 
+Step 8
+> move west
+Action: move west
+You are in the laundry room. Through an open wood door, to the East you see the bathroom. 
+Step 9
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to north', 'open door to west', 'move east', 'take coin']
+Action: look around
+You are in the kitchen. To the North you see a closed wood door. To the East you see the corridor. To the West you see a closed plain door. 
+Step 0
+> open door to north
+Action: open door to north
+You open the wood door, revealing the bathroom. 
+Step 1
+> move north
+Action: move north
+You are in the bathroom. Through an open wood door, to the South you see the kitchen. To the East you see the bedroom. 
+Step 2
+> move east
+Action: move east
+You are in the bedroom. To the South you see a closed wood door. To the East you see a closed wood door. To the West you see the bathroom. 
+Step 3
+> open door to south
+Action: open door to south
+You open the wood door, revealing the corridor. 
+Step 4
+> move south
+Action: move south
+You are in the corridor. Through an open wood door, to the North you see the bedroom. To the South you see a closed wood door. To the East you see a closed patio door. To the West you see the kitchen. 
+Step 5
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'open door to south', 'move west', 'open door to north', 'open door to south', 'open door to west', 'move west', 'open door to north', 'move east', 'move west', 'move east', 'move east', 'move south', 'move north', 'move west', 'move west', 'move north', 'open door to east', 'open door to west', 'move east', 'move east', 'move west', 'move west', 'move east', 'move west', 'move south', 'move north', 'move west', 'take coin']
+Action: look around
+You are in the kitchen. To the South you see a closed frosted-glass door. To the West you see the corridor. 
+Step 0
+> open door to south
+Action: open door to south
+You open the frosted-glass door, revealing the pantry. 
+Step 1
+> move south
+Action: move south
+You are in the pantry. Through an open frosted-glass door, to the North you see the kitchen. 
+Step 2
+> 
+Action: 
+Unknown action: I'm not sure what you mean.
+Step 3
+> move north
+Action: move north
+You are in the kitchen. Through an open frosted-glass door, to the South you see the pantry. To the West you see the corridor. 
+Step 4
+> move west
+Action: move west
+You are in the corridor. To the North you see a closed patio door. To the South you see a closed wood door. To the East you see the kitchen. To the West you see a closed wood door. 
+Step 5
+> open door to north
+Action: open door to north
+You open the patio door, revealing the backyard. 
+Step 6
+> move north
+Action: move north
+You are in the backyard. Through an open patio door, to the South you see the corridor. To the East you see the driveway. To the West you see a closed sliding patio door. 
+Step 7
+> open door to west
+Action: open door to west
+You open the sliding patio door, revealing the living room. 
+Step 8
+> move west
+Action: move west
+You are in the living room. To the South you see a closed wood door. Through an open sliding patio door, to the East you see the backyard. To the West you see a closed wood door. 
+Step 9
+> open door to west
+Action: open door to west
+You open the wood door, revealing the bedroom. 
+Step 10
+> move west
+Action: move west
+You are in the bedroom. Through an open wood door, to the East you see the living room. 
+Step 11
+> take coin
+Action: take coin
+You take the coin.
+Gold path: ['look around', 'take coin']
+Action: look around
+You are in the kitchen. To the South you see a closed frosted-glass door. To the East you see a closed wood door. To the West you see the corridor. 
+Step 0
+> take coin
+Action: take coin
+You take the coin.
+[18, 9, 23, 0, 22, 3, 9, 5, 11, 0]
+1.0

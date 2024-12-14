@@ -1,0 +1,21 @@
+You are an expert on PDDL. Here is a game where you need to move through rooms explore them. Sometimes, two rooms are connected by closed door that you need to open before you can go from one to another. You should also keep track of which room you have visited, and the direction at which you enter a room. You can do nothing else. Here is an example trajectory of such as game:
+
+> You are in the kitchen. To the West you see a closed frosted-glass door. 
+< open door to west
+> You open the door. To the West, you see the pantry.
+< move west
+> You're in the pantry. Through an open door, to the East you see the kitchen.
+
+You will now generate a PDDL domain file named "environment" that includes the following actions:
+(:action move ; go from one room to another
+    <<parameters, precondition, effect>>>
+)
+
+(:action open_door ; open a closed door
+    <<parameters, precondition, effect>>>
+)
+
+Generate the domain file. Throughout the game, you may assume that you know where exactly each room is and how they're connected. You always start in the kitchen. Now generate a problem file corresponding to the above trajectory. When solved, the actions should correspond to the meaningful actions in the trajectory.
+
+Provide the domain and problem files now.
+
