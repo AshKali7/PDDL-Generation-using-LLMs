@@ -1,4 +1,13 @@
-﻿I am exploring the feasibility of predicting both PDDL files from natural language inputs by leveraging insights from the following two papers (named them as Paper 2 and Paper 3) . My approach involves combining their proposed pipelines and further refining the methodology based on the results: 
+https://docs.google.com/document/d/1G2q9VHmLB9TpZHBJ88TisGf7KTQqaT0pjQw9Ole_CQY/edit?usp=sharing 
+Follow the above link for image rendering and detailed worflow of the pipeline
+
+
+
+
+
+
+
+I am exploring the feasibility of predicting both PDDL files from natural language inputs by leveraging insights from the following two papers (named them as Paper 2 and Paper 3) . My approach involves combining their proposed pipelines and further refining the methodology based on the results: 
 * https://arxiv.org/pdf/2305.14909 [Paper 2]
 * https://arxiv.org/pdf/2405.19793 [Paper 3]
 
