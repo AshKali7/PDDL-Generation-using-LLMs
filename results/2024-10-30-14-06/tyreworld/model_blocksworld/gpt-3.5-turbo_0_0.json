@@ -1,0 +1,146 @@
+{
+    "Open a container": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\nNo predicate has been defined yet",
+        "action_desc": "This action enables the robot to open a container. For example, the robot can open a boot.",
+        "iter_1": {
+            "llm_output": "1. ?x - container: the container to open\n\nPreconditions:\n```\n(and\n    (not (container-open ?x))\n)\n```\n\nEffects:\n```\n(and\n    (container-open ?x)\n)\n```\n\nNew Predicates:\n1. (container-open ?x - container): true if the container ?x is open"
+        },
+        "llm_output": "1. ?x - container: the container to open\n\nPreconditions:\n```\n(and\n    (not (container-open ?x))\n)\n```\n\nEffects:\n```\n(and\n    (container-open ?x)\n)\n```\n\nNew Predicates:\n1. (container-open ?x - container): true if the container ?x is open",
+        "new_predicates": [
+            "(container-open ?x - container): true if the container ?x is open"
+        ]
+    },
+    "Close a container": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open",
+        "action_desc": "This action enables the robot to close a container. For example, the robot can close a boot.",
+        "iter_1": {
+            "llm_output": "1. ?x - container: the container to close\n\nPreconditions:\n```\n(and\n    (container-open ?x)\n)\n```\n\nEffects:\n```\n(and\n    (not (container-open ?x))\n)\n```\n\nNew Predicates:\n1. (container-open ?x - container): true if the container ?x is open"
+        },
+        "llm_output": "1. ?x - container: the container to close\n\nPreconditions:\n```\n(and\n    (container-open ?x)\n)\n```\n\nEffects:\n```\n(and\n    (not (container-open ?x))\n)\n```\n\nNew Predicates:\n1. (container-open ?x - container): true if the container ?x is open",
+        "new_predicates": [
+            "(container-open ?x - container): true if the container ?x is open"
+        ]
+    },
+    "Fetch an object from a container": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open",
+        "action_desc": "This action enables the robot to take an object from a container. For example, the robot can fetch jack from the boot or the robot can fetch wheel_1 from the boot.",
+        "iter_1": {
+            "llm_output": "1. ?x - small_object: the object to take from the container\n2. ?y - container: the container from which to take the object\n\nPreconditions:\n```\n(and\n    (container-open ?y)\n    (object-in-container ?x ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (robot-holding ?x)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y"
+        },
+        "llm_output": "1. ?x - small_object: the object to take from the container\n2. ?y - container: the container from which to take the object\n\nPreconditions:\n```\n(and\n    (container-open ?y)\n    (object-in-container ?x ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (robot-holding ?x)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y",
+        "new_predicates": [
+            "(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y"
+        ]
+    },
+    "Put away an object into a container": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y",
+        "action_desc": "This action enables the robot to put an object into a container. For example, the robot can put away jack into the boot or the robot can put away wheel_1 into the boot.",
+        "iter_1": {
+            "llm_output": "1. ?x - small_object: the object to put away\n2. ?y - container: the container to put the object into\n\nPreconditions:\n```\n(and\n    (not (object-in-container ?x ?y))\n)\n```\n\nEffects:\n```\n(and\n    (object-in-container ?x ?y)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y"
+        },
+        "llm_output": "1. ?x - small_object: the object to put away\n2. ?y - container: the container to put the object into\n\nPreconditions:\n```\n(and\n    (not (object-in-container ?x ?y))\n)\n```\n\nEffects:\n```\n(and\n    (object-in-container ?x ?y)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y",
+        "new_predicates": [
+            "(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y"
+        ]
+    },
+    "Loosen a nut in a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y",
+        "action_desc": "This action enables the robot to loosen a nut in a hub. For example, the robot can loosen nut_1 in hub_1. To safely perform this action, the hub needs to be on the ground (i.e., not jacked-up). You may assume the nut remains on the hub after the robot loosens it.",
+        "iter_1": {
+            "llm_output": "1. ?x - nut: the nut to loosen\n2. ?y - hub: the hub containing the nut\n\nPreconditions:\n```\n(and\n    (object-in-container ?x tool_container)\n    (object-in-container ?y hub_container)\n    (not (container-open tool_container))\n    (not (container-open hub_container))\n)\n```\n\nEffects:\n```\n(and\n    (nut-loosened ?x ?y)\n)\n```\n\nNew Predicates:\n1. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y"
+        },
+        "llm_output": "1. ?x - nut: the nut to loosen\n2. ?y - hub: the hub containing the nut\n\nPreconditions:\n```\n(and\n    (object-in-container ?x tool_container)\n    (object-in-container ?y hub_container)\n    (not (container-open tool_container))\n    (not (container-open hub_container))\n)\n```\n\nEffects:\n```\n(and\n    (nut-loosened ?x ?y)\n)\n```\n\nNew Predicates:\n1. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y",
+        "new_predicates": [
+            "(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y"
+        ]
+    },
+    "Tighten a nut in a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y",
+        "action_desc": "This action enables the robot to tighten a nut in a hub. For example, the robot can tighten nut_1 in hub_1. To safely perform this action, the hub needs to be on the ground (i.e., not jacked-up).",
+        "iter_1": {
+            "llm_output": "1. ?x - nut: the nut to tighten\n2. ?y - hub: the hub in which the nut is tightened\n\nPreconditions:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (not (container-open ?z))\n    (nut-loosened ?x ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (nut-loosened ?x ?y))\n)\n```\n\nNew Predicates:\nNo newly defined predicate"
+        },
+        "llm_output": "1. ?x - nut: the nut to tighten\n2. ?y - hub: the hub in which the nut is tightened\n\nPreconditions:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (not (container-open ?z))\n    (nut-loosened ?x ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (nut-loosened ?x ?y))\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "new_predicates": []
+    },
+    "Jack up a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y",
+        "action_desc": "This action enables the robot to jack up a hub. For example, the robot can jack up hub_1.",
+        "iter_1": {
+            "llm_output": "1. ?x - hub: the hub to jack up\n\nPreconditions:\n```\n(and\n    (not (hub-jacked-up ?x))\n    (not (hub-supported ?x))\n    (object-in-container ?x - tool, ?y - container)\n)\n```\n\nEffects:\n```\n(and\n    (hub-jacked-up ?x)\n    (hub-supported ?x)\n)\n```\n\nNew Predicates:\n1. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n2. (hub-supported ?x - hub): true if the hub ?x is supported"
+        },
+        "llm_output": "1. ?x - hub: the hub to jack up\n\nPreconditions:\n```\n(and\n    (not (hub-jacked-up ?x))\n    (not (hub-supported ?x))\n    (object-in-container ?x - tool, ?y - container)\n)\n```\n\nEffects:\n```\n(and\n    (hub-jacked-up ?x)\n    (hub-supported ?x)\n)\n```\n\nNew Predicates:\n1. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n2. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "new_predicates": [
+            "(hub-jacked-up ?x - hub): true if the hub ?x is jacked up",
+            "(hub-supported ?x - hub): true if the hub ?x is supported"
+        ]
+    },
+    "Jack down a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "action_desc": "This action enables the robot to jack down a hub. For example, the robot can jack down hub_1.",
+        "iter_1": {
+            "llm_output": "1. ?x - hub: the hub to jack down\n\nPreconditions:\n```\n(and\n    (hub-jacked-up ?x)\n    (hub-supported ?x)\n)\n```\n\nEffects:\n```\n(and\n    (not (hub-jacked-up ?x))\n    (not (hub-supported ?x))\n)\n```\n\nNew Predicates:\nNo newly defined predicate"
+        },
+        "llm_output": "1. ?x - hub: the hub to jack down\n\nPreconditions:\n```\n(and\n    (hub-jacked-up ?x)\n    (hub-supported ?x)\n)\n```\n\nEffects:\n```\n(and\n    (not (hub-jacked-up ?x))\n    (not (hub-supported ?x))\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "new_predicates": []
+    },
+    "Unfasten a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "action_desc": "This action enables the robot to unfasten a hub. To achieve this, the robot needs to first remove the nut on the hub and then unfasten the hub. For example, the robot can unfasten hub_1 that has nut_1. To safely perform this action, the hub needs to be jacked up. At the end of this action, the hub should be unfastened, and nut should be detached from the hub and held by the robot.",
+        "iter_1": {
+            "llm_output": "1. ?x - hub: the hub to unfasten\n\nPreconditions:\n```\n(and\n    (nut-loosened ?n ?x)\n    (hub-supported ?x)\n    (robot-holding ?n)\n)\n```\n\nEffects:\n```\n(and\n    (not (nut-loosened ?n ?x))\n    (not (hub-supported ?x))\n    (robot-holding ?x)\n)\n```\n\nNew Predicates:\n1. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n2. (hub-supported ?x - hub): true if the hub ?x is supported"
+        },
+        "llm_output": "1. ?x - hub: the hub to unfasten\n\nPreconditions:\n```\n(and\n    (nut-loosened ?n ?x)\n    (hub-supported ?x)\n    (robot-holding ?n)\n)\n```\n\nEffects:\n```\n(and\n    (not (nut-loosened ?n ?x))\n    (not (hub-supported ?x))\n    (robot-holding ?x)\n)\n```\n\nNew Predicates:\n1. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n2. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "new_predicates": [
+            "(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y",
+            "(hub-supported ?x - hub): true if the hub ?x is supported"
+        ]
+    },
+    "Fasten a hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported\n8. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n9. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "action_desc": "This action enables the robot to fasten a hub. To achieve this, the robot needs to first put a nut on the hub and then fasten the hub. For example, the robot can fasten hub_1 that has nut_1. Note that although the robot needs to install a nut into the hub, but the robot is not required to tighten the nut in this action. To safely perform this action, the hub needs to be jacked up.",
+        "iter_1": {
+            "llm_output": "1. ?x - nut: the nut to fasten the hub\n2. ?y - hub: the hub to fasten\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?container)\n    (object-in-container ?y ?container)\n    (container-open ?container)\n    (hub-jacked-up ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?container))\n    (not (object-in-container ?y ?container))\n    (nut-loosened ?x ?y)\n    (hub-supported ?y)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n2. (container-open ?x - container): true if the container ?x is open\n3. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n4. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n5. (hub-supported ?x - hub): true if the hub ?x is supported"
+        },
+        "llm_output": "1. ?x - nut: the nut to fasten the hub\n2. ?y - hub: the hub to fasten\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?container)\n    (object-in-container ?y ?container)\n    (container-open ?container)\n    (hub-jacked-up ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?container))\n    (not (object-in-container ?y ?container))\n    (nut-loosened ?x ?y)\n    (hub-supported ?y)\n)\n```\n\nNew Predicates:\n1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n2. (container-open ?x - container): true if the container ?x is open\n3. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n4. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n5. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "new_predicates": [
+            "(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y",
+            "(container-open ?x - container): true if the container ?x is open",
+            "(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y",
+            "(hub-jacked-up ?x - hub): true if the hub ?x is jacked up",
+            "(hub-supported ?x - hub): true if the hub ?x is supported"
+        ]
+    },
+    "Remove wheel from hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported\n8. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n9. (hub-supported ?x - hub): true if the hub ?x is supported\n10. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n11. (container-open ?x - container): true if the container ?x is open\n12. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n13. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n14. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "action_desc": "This action enables the robot to remove a wheel from a hub. For example, the robot can remove wheel_1 from hub_1. Note that the hub needs to be unfastened in order to remove the wheel. To safely perform this action, the hub needs to be jacked up.",
+        "iter_1": {
+            "llm_output": "1. ?x - wheel: the wheel to remove\n2. ?y - hub: the hub from which the wheel is to be removed\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?y)\n    (nut-loosened ?z ?y)\n    (hub-jacked-up ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (not (hub-supported ?y))\n)\n```\n\nNew Predicates:\nNo newly defined predicate"
+        },
+        "llm_output": "1. ?x - wheel: the wheel to remove\n2. ?y - hub: the hub from which the wheel is to be removed\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?y)\n    (nut-loosened ?z ?y)\n    (hub-jacked-up ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?y))\n    (not (hub-supported ?y))\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "new_predicates": []
+    },
+    "Put wheel on hub": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported\n8. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n9. (hub-supported ?x - hub): true if the hub ?x is supported\n10. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n11. (container-open ?x - container): true if the container ?x is open\n12. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n13. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n14. (hub-supported ?x - hub): true if the hub ?x is supported",
+        "action_desc": "This action enables the robot to put a wheel on an unfastened hub. For example, the robot can put wheel_1 on hub_1. Note that the hub needs to be unfastened in order to put on the wheel. To safely perform this action, the hub needs to be jacked up.",
+        "iter_1": {
+            "llm_output": "1. ?x - wheel: the wheel to put on the hub\n2. ?y - hub: the hub to put the wheel on\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?container)\n    (object-in-container ?y ?container)\n    (container-open ?container)\n    (nut-loosened ?nut ?y)\n    (hub-jacked-up ?y)\n    (hub-supported ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?container))\n    (not (nut-loosened ?nut ?y))\n    (not (hub-jacked-up ?y))\n    (not (hub-supported ?y))\n    (wheel-on-hub ?x ?y)\n)\n```\n\nNew Predicates:\n1. (wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y"
+        },
+        "llm_output": "1. ?x - wheel: the wheel to put on the hub\n2. ?y - hub: the hub to put the wheel on\n\nPreconditions:\n```\n(and\n    (object-in-container ?x ?container)\n    (object-in-container ?y ?container)\n    (container-open ?container)\n    (nut-loosened ?nut ?y)\n    (hub-jacked-up ?y)\n    (hub-supported ?y)\n)\n```\n\nEffects:\n```\n(and\n    (not (object-in-container ?x ?container))\n    (not (nut-loosened ?nut ?y))\n    (not (hub-jacked-up ?y))\n    (not (hub-supported ?y))\n    (wheel-on-hub ?x ?y)\n)\n```\n\nNew Predicates:\n1. (wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y",
+        "new_predicates": [
+            "(wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y"
+        ]
+    },
+    "Inflate wheel": {
+        "predicate_prompt": "You can create and define new predicates, but you may also reuse the following predicates:\n1. (container-open ?x - container): true if the container ?x is open\n2. (container-open ?x - container): true if the container ?x is open\n3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n4. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n5. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n6. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n7. (hub-supported ?x - hub): true if the hub ?x is supported\n8. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n9. (hub-supported ?x - hub): true if the hub ?x is supported\n10. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y\n11. (container-open ?x - container): true if the container ?x is open\n12. (nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y\n13. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up\n14. (hub-supported ?x - hub): true if the hub ?x is supported\n15. (wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y",
+        "action_desc": "This action enables the robot to inflate a wheel. For example, the robot can inflate wheel_1. You also need to make sure the wheel is intact.",
+        "iter_1": {
+            "llm_output": "1. ?x - wheel: the wheel to inflate\n\nPreconditions:\n```\n(and\n    (wheel-intact ?x)\n)\n```\n\nEffects:\n```\n(and\n    (wheel-inflated ?x)\n)\n```\n\nNew Predicates:\n1. (wheel-intact ?x - wheel): true if the wheel ?x is intact\n2. (wheel-inflated ?x - wheel): true if the wheel ?x is inflated"
+        },
+        "llm_output": "1. ?x - wheel: the wheel to inflate\n\nPreconditions:\n```\n(and\n    (wheel-intact ?x)\n)\n```\n\nEffects:\n```\n(and\n    (wheel-inflated ?x)\n)\n```\n\nNew Predicates:\n1. (wheel-intact ?x - wheel): true if the wheel ?x is intact\n2. (wheel-inflated ?x - wheel): true if the wheel ?x is inflated",
+        "new_predicates": [
+            "(wheel-intact ?x - wheel): true if the wheel ?x is intact",
+            "(wheel-inflated ?x - wheel): true if the wheel ?x is inflated"
+        ]
+    }
+}

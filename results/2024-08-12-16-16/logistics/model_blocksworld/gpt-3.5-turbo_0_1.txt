@@ -1,0 +1,247 @@
+
+
+####################
+Action: Load a package into a truck
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+--------------------
+--------------------
+1. ?p - package: the package to load
+2. ?t - truck: the truck to load the package into
+
+Preconditions:
+```
+(and
+    (at ?p ?l) ; the package is at a location
+    (at ?t ?l) ; the truck is at the same location as the package
+    (truck-empty ?t) ; the truck is empty
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?l)) ; the package is no longer at the location
+    (not (truck-empty ?t)) ; the truck is no longer empty
+    (truck-loaded ?t ?p) ; the truck is loaded with the package
+)
+```
+
+New Predicates:
+1. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+
+
+####################
+Action: Unload a package from a truck
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?p - package: the package to unload
+2. ?t - truck: the truck from which to unload the package
+
+Preconditions:
+```
+(and
+    (at ?p ?t)
+    (not (truck-empty ?t))
+    (truck-loaded ?t ?p)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?t))
+    (truck-empty ?t)
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Load a package into an airplane
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?p - package: the package to load
+2. ?a - airplane: the airplane to load the package into
+
+Preconditions:
+```
+(and
+    (at ?p ?l) ; the package is at a location
+    (at ?a ?l) ; the airplane is at the same location as the package
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?l)) ; the package is no longer at the location
+    (in-airplane ?p ?a) ; the package is loaded into the airplane
+)
+```
+
+New Predicates:
+1. (in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+
+
+####################
+Action: Unload a package from an airplane
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+8. (in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+--------------------
+--------------------
+1. ?p - package: the package to unload
+2. ?a - airplane: the airplane from which to unload the package
+
+Preconditions:
+```
+(and
+    (in-airplane ?p ?a)
+)
+```
+
+Effects:
+```
+(and
+    (not (in-airplane ?p ?a))
+    (at ?p ?l) ; where ?l is the location where the airplane is currently located
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Drive a truck from one location to another in a city
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+8. (in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+--------------------
+--------------------
+1. ?t - truck: the truck to drive
+2. ?l1 - location: the current location of the truck
+3. ?l2 - location: the destination location of the truck
+4. ?city - city: the city where the locations are situated
+
+Preconditions:
+```
+(and
+    (at ?t ?l1)
+    (truck-empty ?t)
+    (at ?l1 ?city)
+    (at ?l2 ?city)
+    (connected-locations ?l1 ?l2)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?t ?l1))
+    (at ?t ?l2)
+)
+```
+
+New Predicates:
+1. (connected-locations ?l1 - location, ?l2 - location): true if there is a direct connection between location ?l1 and location ?l2.
+
+
+####################
+Action: Fly an airplane from one city to another
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+8. (in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+9. (connected-locations ?l1 - location, ?l2 - location): true if there is a direct connection between location ?l1 and location ?l2.
+--------------------
+--------------------
+1. ?a - airplane: the airplane to fly
+2. ?city1 - city: the city from which the airplane will fly
+3. ?city2 - city: the city to which the airplane will fly
+
+Preconditions:
+```
+(and
+    (at ?a ?l1) ; the airplane is at the airport in city ?city1
+    (at ?a ?l2) ; the airplane is not at the airport in city ?city2
+    (connected-cities ?city1 ?city2)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?a ?l1))
+    (at ?a ?l2)
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+--------------------
+Extracted predicates:
+
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+7. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+8. (in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+9. (connected-locations ?l1 - location, ?l2 - location): true if there is a direct connection between location ?l1 and location ?l2.

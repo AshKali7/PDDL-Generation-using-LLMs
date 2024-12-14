@@ -1,0 +1,220 @@
+
+
+####################
+Action: Load a package into a truck
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+No predicate has been defined yet
+--------------------
+--------------------
+1. ?p - package: the package to load
+2. ?t - truck: the truck to load the package into
+
+Preconditions:
+```
+(and
+    (at ?p ?l) ; the package ?p is at location ?l
+    (at ?t ?l) ; the truck ?t is at location ?l
+    (truck-empty ?t) ; the truck ?t is empty
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?l))
+    (not (truck-empty ?t))
+    (truck-loaded ?t ?p) ; the truck ?t is loaded with package ?p
+)
+```
+
+New Predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+
+
+####################
+Action: Unload a package from a truck
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?p - package: the package to unload
+2. ?t - truck: the truck from which to unload the package
+
+Preconditions:
+```
+(and
+    (at ?p ?t)
+    (truck-loaded ?t ?p)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?t))
+    (not (truck-loaded ?t ?p))
+    (at ?p ?l) ; the package is now at a location
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Load a package into an airplane
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?p - package: the package to load
+2. ?a - airplane: the airplane to load the package into
+
+Preconditions:
+```
+(and
+    (at ?p ?l)
+    (at ?a ?l)
+    (not (at ?p ?a))
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?l))
+    (at ?p ?a)
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Unload a package from an airplane
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?p - package: the package to unload
+2. ?a - airplane: the airplane from which to unload the package
+
+Preconditions:
+```
+(and
+    (at ?p ?a)
+    (at ?a ?l)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?p ?a))
+    (at ?p ?l)
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Drive a truck from one location to another in a city
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+--------------------
+--------------------
+1. ?t - truck: the truck to drive
+2. ?l1 - location: the initial location
+3. ?l2 - location: the destination location
+
+Preconditions:
+```
+(and
+    (at ?t ?l1)
+    (at ?l1 ?l2)
+    (truck-empty ?t)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?t ?l1))
+    (at ?t ?l2)
+)
+```
+
+New Predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+
+
+####################
+Action: Fly an airplane from one city to another
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+--------------------
+--------------------
+1. ?plane - plane: the airplane to fly
+2. ?city1 - city: the city from which the airplane will fly
+3. ?city2 - city: the city to which the airplane will fly
+
+Preconditions:
+```
+(and
+    (at ?plane ?city1)
+    (at ?city1 ?airport1)
+    (at ?city2 ?airport2)
+    (connected-cities ?city1 ?city2)
+)
+```
+
+Effects:
+```
+(and
+    (not (at ?plane ?city1))
+    (at ?plane ?city2)
+)
+```
+
+New Predicates:
+1. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+
+--------------------
+Extracted predicates:
+
+1. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+2. (truck-empty ?t - truck): true if the truck ?t is empty
+3. (truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+4. (at ?o - object, ?l - location): true if the object ?o is at location ?l
+5. (truck-empty ?t - truck): true if the truck ?t is empty
+6. (connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.

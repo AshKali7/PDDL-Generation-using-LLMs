@@ -1,0 +1,9 @@
+(at ?o - object, ?l - location): true if the object ?o is at location ?l
+(truck-empty ?t - truck): true if the truck ?t is empty
+(truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+(at ?o - object, ?l - location): true if the object ?o is at location ?l
+(truck-empty ?t - truck): true if the truck ?t is empty
+(connected-cities ?city1 - city, ?city2 - city): true if there is a direct connection between city ?city1 and city ?city2.
+(truck-loaded ?t - truck, ?p - package): true if the truck ?t is loaded with package ?p
+(in-airplane ?p - package, ?a - airplane): true if the package ?p is loaded into the airplane ?a
+(connected-locations ?l1 - location, ?l2 - location): true if there is a direct connection between location ?l1 and location ?l2.

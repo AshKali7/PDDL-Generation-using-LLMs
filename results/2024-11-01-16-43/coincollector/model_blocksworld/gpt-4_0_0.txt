@@ -1,0 +1,118 @@
+
+
+####################
+Action: Move
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+No predicate has been defined yet
+--------------------
+--------------------
+1. ?from - location: the current location of the agent
+2. ?to - location: the destination location where the agent wants to move
+3. ?dir - direction: the direction in which the agent wants to move
+
+Preconditions:
+```
+(and
+    (agent-at ?from)
+    (connected ?from ?to ?dir)
+    (door-open ?from ?to)
+)
+```
+
+Effects:
+```
+(and
+    (not (agent-at ?from))
+    (agent-at ?to)
+    (visited ?to)
+)
+```
+
+New Predicates:
+1. (agent-at ?loc - location): true if the agent is at the location ?loc
+2. (connected ?from - location ?to - location ?dir - direction): true if location ?from is connected to location ?to in direction ?dir
+3. (door-open ?from - location ?to - location): true if the door between location ?from and location ?to is open
+4. (visited ?loc - location): true if the agent has visited the location ?loc
+
+
+####################
+Action: Open a Door
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (agent-at ?loc - location): true if the agent is at the location ?loc
+2. (connected ?from - location ?to - location ?dir - direction): true if location ?from is connected to location ?to in direction ?dir
+3. (door-open ?from - location ?to - location): true if the door between location ?from and location ?to is open
+4. (visited ?loc - location): true if the agent has visited the location ?loc
+--------------------
+--------------------
+1. ?from - location: the location where the agent is currently located
+2. ?to - location: the location that the agent wants to access by opening the door
+3. ?dir - direction: the direction from location ?from to location ?to
+
+Preconditions:
+```
+(and
+    (agent-at ?from)
+    (connected ?from ?to ?dir)
+    (not (door-open ?from ?to))
+)
+```
+
+Effects:
+```
+(and
+    (door-open ?from ?to)
+)
+```
+
+New Predicates:
+1. (door-closed ?from - location ?to - location): true if the door between location ?from and location ?to is closed. This is the negation of the predicate (door-open ?from ?to).
+
+
+####################
+Action: Pick a Coin
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (agent-at ?loc - location): true if the agent is at the location ?loc
+2. (connected ?from - location ?to - location ?dir - direction): true if location ?from is connected to location ?to in direction ?dir
+3. (door-open ?from - location ?to - location): true if the door between location ?from and location ?to is open
+4. (visited ?loc - location): true if the agent has visited the location ?loc
+5. (door-closed ?from - location ?to - location): true if the door between location ?from and location ?to is closed. This is the negation of the predicate (door-open ?from ?to).
+--------------------
+--------------------
+1. ?loc - location: the location where the coin is located
+
+Preconditions:
+```
+(and
+    (agent-at ?loc)
+    (coin-at ?loc)
+)
+```
+
+Effects:
+```
+(and
+    (not (coin-at ?loc))
+    (agent-has-coin)
+)
+```
+
+New Predicates:
+1. (coin-at ?loc - location): true if the coin is at the location ?loc
+2. (agent-has-coin): true if the agent has picked up the coin
+
+--------------------
+Extracted predicates:
+
+1. (agent-at ?loc - location): true if the agent is at the location ?loc
+2. (connected ?from - location ?to - location ?dir - direction): true if location ?from is connected to location ?to in direction ?dir
+3. (door-open ?from - location ?to - location): true if the door between location ?from and location ?to is open
+4. (visited ?loc - location): true if the agent has visited the location ?loc
+5. (door-closed ?from - location ?to - location): true if the door between location ?from and location ?to is closed. This is the negation of the predicate (door-open ?from ?to).
+6. (coin-at ?loc - location): true if the coin is at the location ?loc
+7. (agent-has-coin): true if the agent has picked up the coin

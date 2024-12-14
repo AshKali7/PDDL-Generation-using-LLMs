@@ -1,0 +1,34 @@
+(container-open ?x - container): true if the container ?x is open
+(container-open ?x - container): true if the container ?x is open
+(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y
+(hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+(hub-supported ?x - hub): true if the hub ?x is supported
+(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y
+(hub-supported ?x - hub): true if the hub ?x is supported
+(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+(container-open ?x - container): true if the container ?x is open
+(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y
+(hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+(hub-supported ?x - hub): true if the hub ?x is supported
+(wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y
+(wheel-intact ?x - wheel): true if the wheel ?x is intact
+(wheel-inflated ?x - wheel): true if the wheel ?x is inflated
+(robot-holding ?x - small_object): true if the robot is holding the object ?x
+(container-open ?x - container): true if the container ?x is open
+(object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y
+(nut-tightened ?x - nut, ?y - hub): true if the nut ?x is tightened in the hub ?y
+(nut-holding ?x - nut): true if the robot is holding the nut ?x
+(hub-unfastened ?x - hub): true if the hub ?x is unfastened
+(nut-tightened ?x - nut, ?y - hub): true if the nut ?x is tightened in the hub ?y
+(nut-holding ?x - nut): true if the robot is holding the nut ?x
+(hub-unfastened ?x - hub): true if the hub ?x is unfastened
+(wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y
+(wheel-intact ?x - wheel): true if the wheel ?x is intact
+(hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+(hub-supported ?x - hub): true if the hub ?x is supported
+(nut-loosened ?x - nut, ?y - hub): true if the nut ?x is loosened in the hub ?y
+(robot-holding ?x - small_object): true if the robot is holding the object ?x
+(wheel-on-hub ?x - wheel, ?y - hub): true if the wheel ?x is placed on the hub ?y

@@ -1,0 +1,505 @@
+
+
+####################
+Action: Open a container
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+No predicate has been defined yet
+--------------------
+--------------------
+1. ?x - container: the container to open
+
+Preconditions:
+```
+(and
+    (not (container-open ?x))
+)
+```
+
+Effects:
+```
+(and
+    (container-open ?x)
+)
+```
+
+New Predicates:
+1. (container-open ?x - container): true if the container ?x is open
+
+
+####################
+Action: Close a container
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+--------------------
+--------------------
+1. ?x - container: the container to close
+
+Preconditions:
+```
+(and
+    (container-open ?x)
+)
+```
+
+Effects:
+```
+(and
+    (not (container-open ?x))
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Fetch an object from a container
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+--------------------
+--------------------
+1. ?x - small_object: the object to take from the container
+2. ?y - container: the container from which to take the object
+
+Preconditions:
+```
+(and
+    (container-open ?y)
+    (object-in-container ?x ?y)
+)
+```
+
+Effects:
+```
+(and
+    (robot-holding ?x)
+    (not (object-in-container ?x ?y))
+)
+```
+
+New Predicates:
+1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+
+
+####################
+Action: Put away an object into a container
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+--------------------
+--------------------
+1. ?x - small_object: the object to put away
+2. ?y - container: the container to put the object into
+
+Preconditions:
+```
+(and
+    (not (object-in-container ?x ?y))
+)
+```
+
+Effects:
+```
+(and
+    (object-in-container ?x ?y)
+)
+```
+
+New Predicates:
+1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+
+
+####################
+Action: Loosen a nut in a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+--------------------
+--------------------
+1. ?x - nut: the nut to loosen
+2. ?y - hub: the hub containing the nut to loosen
+
+Preconditions:
+```
+(and
+    (object-in-container ?x tools)
+    (object-in-container ?y hubs)
+    (not (container-open tools))
+    (not (container-open hubs))
+)
+```
+
+Effects:
+```
+(and
+    (nut-loose ?x)
+)
+```
+
+New Predicates:
+1. (nut-loose ?x - nut): true if the nut ?x is loosened
+
+
+####################
+Action: Tighten a nut in a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+--------------------
+--------------------
+1. ?x - nut: the nut to tighten
+2. ?y - hub: the hub where the nut is located
+
+Preconditions:
+```
+(and
+    (not (object-in-container ?x ?y))
+    (not (container-open ?z)) ; where ?z is the container containing the hub ?y
+    (nut-loose ?x)
+)
+```
+
+Effects:
+```
+(and
+    (not (nut-loose ?x))
+)
+```
+
+New Predicates:
+1. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+2. (container-open ?x - container): true if the container ?x is open
+3. (nut-loose ?x - nut): true if the nut ?x is loosened
+
+
+####################
+Action: Jack up a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+--------------------
+--------------------
+1. ?x - hub: the hub to jack up
+
+Preconditions:
+```
+(and
+    (not (hub-jacked-up ?x))
+    (not (hub-supported ?x))
+    (object-in-container ?x - tool, ?y - container)
+    (container-open ?y)
+)
+```
+
+Effects:
+```
+(and
+    (hub-jacked-up ?x)
+    (hub-supported ?x)
+)
+```
+
+New Predicates:
+1. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+2. (hub-supported ?x - hub): true if the hub ?x is supported
+
+
+####################
+Action: Jack down a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+--------------------
+--------------------
+1. ?x - hub: the hub to jack down
+
+Preconditions:
+```
+(and
+    (hub-jacked-up ?x)
+    (hub-supported ?x)
+)
+```
+
+Effects:
+```
+(and
+    (not (hub-jacked-up ?x))
+    (not (hub-supported ?x))
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Unfasten a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+--------------------
+--------------------
+1. ?x - hub: the hub to unfasten
+
+Preconditions:
+```
+(and
+    (hub-supported ?x)
+    (nut-loose ?y)
+    (object-in-container ?y, ?z)
+    (container-open ?z)
+)
+```
+
+Effects:
+```
+(and
+    (not (hub-supported ?x))
+    (not (nut-loose ?y))
+    (robot-holding ?y)
+    (hub-unfastened ?x)
+)
+```
+
+New Predicates:
+1. (hub-supported ?x - hub): true if the hub ?x is supported
+2. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+
+
+####################
+Action: Fasten a hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+10. (hub-supported ?x - hub): true if the hub ?x is supported
+11. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+--------------------
+--------------------
+1. ?x - hub: the hub to fasten
+
+Preconditions:
+```
+(and
+    (object-in-container ?x - nut, ?y - container)
+    (nut-loose ?x)
+    (hub-jacked-up ?x)
+    (hub-supported ?x)
+    (hub-unfastened ?x)
+)
+```
+
+Effects:
+```
+(and
+    (not (object-in-container ?x - nut, ?y - container))
+    (not (nut-loose ?x))
+    (not (hub-unfastened ?x))
+    (hub-fastened ?x)
+)
+```
+
+New Predicates:
+1. (hub-fastened ?x - hub): true if the hub ?x is fastened
+
+
+####################
+Action: Remove wheel from hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+10. (hub-supported ?x - hub): true if the hub ?x is supported
+11. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+12. (hub-fastened ?x - hub): true if the hub ?x is fastened
+--------------------
+--------------------
+1. ?wheel - wheel: the wheel to remove
+2. ?hub - hub: the hub from which the wheel is to be removed
+
+Preconditions:
+```
+(and
+    (object-in-container ?wheel - wheel, ?hub - hub)
+    (hub-jacked-up ?hub)
+    (hub-unfastened ?hub)
+)
+```
+
+Effects:
+```
+(and
+    (not (object-in-container ?wheel - wheel, ?hub - hub))
+    (not (hub-fastened ?hub))
+    (hub-supported ?hub)
+)
+```
+
+New Predicates:
+No newly defined predicate
+
+
+####################
+Action: Put wheel on hub
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+10. (hub-supported ?x - hub): true if the hub ?x is supported
+11. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+12. (hub-fastened ?x - hub): true if the hub ?x is fastened
+--------------------
+--------------------
+1. ?wheel - wheel: the wheel to put on the hub
+2. ?hub - hub: the hub to put the wheel on
+
+Preconditions:
+```
+(and
+    (object-in-container ?wheel - wheel, ?container - container)
+    (object-in-container ?hub - hub, ?container - container)
+    (container-open ?container)
+    (nut-loose ?nut - nut)
+    (hub-jacked-up ?hub)
+    (hub-supported ?hub)
+    (hub-unfastened ?hub)
+)
+```
+
+Effects:
+```
+(and
+    (not (object-in-container ?wheel - wheel, ?container - container))
+    (not (nut-loose ?nut - nut))
+    (not (hub-unfastened ?hub))
+    (hub-fastened ?hub)
+)
+```
+
+New Predicates:
+1. (wheel-on-hub ?wheel - wheel, ?hub - hub): true if the wheel ?wheel is placed on the hub ?hub
+
+
+####################
+Action: Inflate wheel
+####################
+--------------------
+You can create and define new predicates, but you may also reuse the following predicates:
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+10. (hub-supported ?x - hub): true if the hub ?x is supported
+11. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+12. (hub-fastened ?x - hub): true if the hub ?x is fastened
+13. (wheel-on-hub ?wheel - wheel, ?hub - hub): true if the wheel ?wheel is placed on the hub ?hub
+--------------------
+--------------------
+1. ?wheel - wheel: the wheel to inflate
+
+Preconditions:
+```
+(and
+    (wheel-intact ?wheel)
+)
+```
+
+Effects:
+```
+(and
+    (wheel-inflated ?wheel)
+)
+```
+
+New Predicates:
+1. (wheel-intact ?wheel - wheel): true if the wheel ?wheel is intact
+2. (wheel-inflated ?wheel - wheel): true if the wheel ?wheel is inflated
+
+--------------------
+Extracted predicates:
+
+1. (container-open ?x - container): true if the container ?x is open
+2. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+3. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+4. (nut-loose ?x - nut): true if the nut ?x is loosened
+5. (object-in-container ?x - small_object, ?y - container): true if the object ?x is in the container ?y
+6. (container-open ?x - container): true if the container ?x is open
+7. (nut-loose ?x - nut): true if the nut ?x is loosened
+8. (hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+9. (hub-supported ?x - hub): true if the hub ?x is supported
+10. (hub-supported ?x - hub): true if the hub ?x is supported
+11. (hub-unfastened ?x - hub): true if the hub ?x is unfastened
+12. (hub-fastened ?x - hub): true if the hub ?x is fastened
+13. (wheel-on-hub ?wheel - wheel, ?hub - hub): true if the wheel ?wheel is placed on the hub ?hub
+14. (wheel-intact ?wheel - wheel): true if the wheel ?wheel is intact
+15. (wheel-inflated ?wheel - wheel): true if the wheel ?wheel is inflated

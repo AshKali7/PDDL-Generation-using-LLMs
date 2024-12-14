@@ -1,0 +1,46 @@
+{
+    "Move": {
+        "action_desc": "This action enables the agent to move from one location to another in the specified direction. For example, the agent can move from location A to location B if they are connected in that direction and there is no closed door between them.",
+        "llm_output": "1. ?from - location: the current location of the agent\n2. ?to - location: the location the agent wants to move to\n3. ?dir - direction: the direction from ?from to ?to\n\nPreconditions:\n```\n(and\n    (agent-at ?from)\n    (connected ?from ?to ?dir)\n    (door-open ?from ?to)\n    (not (visited ?to))\n)\n```\n\nEffects:\n```\n(and\n    (not (agent-at ?from))\n    (agent-at ?to)\n    (visited ?to)\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "translated_preconditions": [
+            "the agent is at the location ?from",
+            "the location ?from is connected to location ?to in direction ?dir",
+            "the door between location ?from and location ?to is open",
+            "the agent has not visited the location ?to"
+        ],
+        "translated_effects": [
+            "the agent is not at the location ?from",
+            "the agent is at the location ?to",
+            "the agent has visited the location ?to"
+        ],
+        "annotation": []
+    },
+    "Open a Door": {
+        "action_desc": "This action enables the agent to open a closed door between two locations, allowing movement between them. For example, if there is a closed door between location A and location B, the agent at location A can open it, making it possible to move to location B.",
+        "llm_output": "1. ?from - location: the location where the agent is currently located\n2. ?to - location: the location that the agent wants to access by opening the door\n3. ?dir - direction: the direction from location ?from to location ?to\n\nPreconditions:\n```\n(and\n    (agent-at ?from)\n    (connected ?from ?to ?dir)\n    (door-closed ?from ?to)\n)\n```\n\nEffects:\n```\n(and\n    (not (door-closed ?from ?to))\n    (door-open ?from ?to)\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "translated_preconditions": [
+            "the agent is at the location ?from",
+            "the location ?from is connected to location ?to in direction ?dir",
+            "the door between location ?from and location ?to is closed"
+        ],
+        "translated_effects": [
+            "the door between location ?from and location ?to is not closed",
+            "the door between location ?from and location ?to is open"
+        ],
+        "annotation": []
+    },
+    "Pick a Coin": {
+        "action_desc": "This action enables the agent to pick up a coin once it is in the same room where the coin is located. For example, if the agent is in location C, and a coin is found in the same location, the agent can pick up the coin, achieving the goal of collecting it.",
+        "llm_output": "1. ?loc - location: the location where the coin is located\n\nPreconditions:\n```\n(and\n    (agent-at ?loc)\n    (coin-at ?loc)\n    (not (agent-has-coin))\n)\n```\n\nEffects:\n```\n(and\n    (not (coin-at ?loc))\n    (agent-has-coin)\n)\n```\n\nNew Predicates:\nNo newly defined predicate",
+        "translated_preconditions": [
+            "the agent is at location ?loc",
+            "the coin is at location ?loc",
+            "the agent has not picked up the coin"
+        ],
+        "translated_effects": [
+            "the coin is not at the location ?loc",
+            "the agent has picked up the coin"
+        ],
+        "annotation": []
+    }
+}

@@ -1,0 +1,234 @@
+{
+    "Open a container": {
+        "parameters": [
+            "?x - container: the container to open"
+        ],
+        "preconditions": "(and\n  (not (container-open ?x))\n)",
+        "effects": "(and\n  (container-open ?x)\n)",
+        "action_desc": "This action enables the robot to open a container. For example, the robot can open a boot.",
+        "translated_preconditions": [
+            "the container ?x is not open"
+        ],
+        "translated_effects": [
+            "the container ?x is open"
+        ]
+    },
+    "Close a container": {
+        "parameters": [
+            "?x - container: the container to close"
+        ],
+        "preconditions": "(and\n  (container-open ?x)\n  (forall (?y - small_object) (implies (object-in-container ?y ?x) (not (nut-loose ?y)) ) )\n)",
+        "effects": "(and\n  (not (container-open ?x))\n)",
+        "action_desc": "This action enables the robot to close a container. For example, the robot can close a boot.",
+        "translated_preconditions": [
+            "the container ?x is open",
+            "for all small objects ?y, if ?y is in the container ?x, then the nut ?y is not loosened"
+        ],
+        "translated_effects": [
+            "the container ?x is not open"
+        ]
+    },
+    "Fetch an object from a container": {
+        "parameters": [
+            "?x - small_object: the object to take from the container",
+            "?y - container: the container from which to take the object"
+        ],
+        "preconditions": "(and\n  (object-in-container ?x ?y)\n  (container-open ?y)\n)",
+        "effects": "(and\n  (not (object-in-container ?x ?y))\n  (robot-holding ?x)\n)",
+        "action_desc": "This action enables the robot to take an object from a container. For example, the robot can fetch jack from the boot or the robot can fetch wheel_1 from the boot.",
+        "translated_preconditions": [
+            "the object ?x is in the container ?y",
+            "the container ?y is open"
+        ],
+        "translated_effects": [
+            "the object ?x is not in the container ?y",
+            "the robot is holding the object ?x"
+        ]
+    },
+    "Put away an object into a container": {
+        "parameters": [
+            "?x - small_object: the object to put into the container",
+            "?y - container: the container to put the object into"
+        ],
+        "preconditions": "(and\n  (robot-holding ?x)\n  (container-open ?y)\n)",
+        "effects": "(and\n  (not (robot-holding ?x))\n  (object-in-container ?x ?y)\n)",
+        "action_desc": "This action enables the robot to put an object into a container. For example, the robot can put away jack into the boot or the robot can put away wheel_1 into the boot.",
+        "translated_preconditions": [
+            "the robot is holding the object ?x",
+            "the container ?y is open"
+        ],
+        "translated_effects": [
+            "the robot is not holding the object ?x",
+            "the object ?x is in the container ?y"
+        ]
+    },
+    "Loosen a nut in a hub": {
+        "parameters": [
+            "?nut - nut: the nut to loosen",
+            "?hub - hub: the hub in which the nut is located"
+        ],
+        "preconditions": "(and\n  (not (hub-jacked-up ?hub))\n  (hub-supported ?hub)\n  (not (nut-loose ?nut))\n  (object-in-container ?nut, ?hub)\n)",
+        "effects": "(and\n  (nut-loose ?nut)\n)",
+        "action_desc": "This action enables the robot to loosen a nut in a hub. For example, the robot can loosen nut_1 in hub_1. To safely perform this action, the hub needs to be on the ground (i.e., not jacked-up). You may assume the nut remains on the hub after the robot loosens it.",
+        "translated_preconditions": [
+            "the hub ?hub is not jacked up",
+            "the hub ?hub is supported",
+            "the nut ?nut is not loosened",
+            "the nut ?nut is in the container ?hub"
+        ],
+        "translated_effects": [
+            "the nut ?nut is loosened"
+        ]
+    },
+    "Tighten a nut in a hub": {
+        "parameters": [
+            "?nut - nut: the nut to tighten",
+            "?hub - hub: the hub in which the nut is tightened"
+        ],
+        "preconditions": "(and\n  (not (hub-jacked-up ?hub))\n  (nut-loose ?nut)\n  (object-in-container ?nut, ?hub)\n)",
+        "effects": "(and\n  (not (nut-loose ?nut))\n  (hub-fastened ?hub)\n)",
+        "action_desc": "This action enables the robot to tighten a nut in a hub. For example, the robot can tighten nut_1 in hub_1. To safely perform this action, the hub needs to be on the ground (i.e., not jacked-up).",
+        "translated_preconditions": [
+            "the hub ?hub is not jacked up",
+            "the nut ?nut is loosened",
+            "the nut ?nut is in the container ?hub"
+        ],
+        "translated_effects": [
+            "the nut ?nut is not loosened",
+            "the hub ?hub is fastened"
+        ]
+    },
+    "Jack up a hub": {
+        "parameters": [
+            "?x - hub: the hub to jack up"
+        ],
+        "preconditions": "(and\n  (not (hub-jacked-up ?x))\n  (not (hub-supported ?x))\n  (hub-fastened ?x)\n  (wheel-on-hub ?wheel ?x)\n  (wheel-intact ?wheel)\n)",
+        "effects": "(and\n  (hub-jacked-up ?x)\n  (hub-supported ?x)\n  (not (hub-fastened ?x))\n)",
+        "action_desc": "This action enables the robot to jack up a hub. For example, the robot can jack up hub_1.",
+        "translated_preconditions": [
+            "the hub ?x is not jacked up",
+            "the hub ?x is not supported",
+            "the hub ?x is fastened",
+            "the wheel ?wheel is placed on the hub ?x",
+            "the wheel ?wheel is intact"
+        ],
+        "translated_effects": [
+            "the hub ?x is jacked up",
+            "the hub ?x is supported",
+            "the hub ?x is not fastened"
+        ]
+    },
+    "Jack down a hub": {
+        "parameters": [
+            "?x - hub: the hub to jack down"
+        ],
+        "preconditions": "(and\n  (hub-jacked-up ?x)\n  (hub-supported ?x)\n  (hub-unfastened ?x)\n)",
+        "effects": "(and\n  (not (hub-jacked-up ?x))\n  (not (hub-supported ?x))\n)",
+        "action_desc": "This action enables the robot to jack down a hub. For example, the robot can jack down hub_1.",
+        "translated_preconditions": [
+            "the hub ?x is jacked up",
+            "the hub ?x is supported",
+            "the hub ?x is unfastened"
+        ],
+        "translated_effects": [
+            "the hub ?x is not jacked up",
+            "the hub ?x is not supported"
+        ]
+    },
+    "Unfasten a hub": {
+        "parameters": [
+            "?hub - hub: the hub to unfasten",
+            "?nut - nut: the nut to remove from the hub"
+        ],
+        "preconditions": "(and\n  (hub-supported ?hub)\n  (hub-jacked-up ?hub)\n  (nut-loose ?nut)\n  (robot-holding ?nut)\n)",
+        "effects": "(and\n  (not (hub-fastened ?hub))\n  (hub-unfastened ?hub)\n  (robot-holding ?nut)\n  (not (nut-loose ?nut))\n)",
+        "action_desc": "This action enables the robot to unfasten a hub. To achieve this, the robot needs to first remove the nut on the hub and then unfasten the hub. For example, the robot can unfasten hub_1 that has nut_1. To safely perform this action, the hub needs to be jacked up. At the end of this action, the hub should be unfastened, and nut should be detached from the hub and held by the robot.",
+        "translated_preconditions": [
+            "the hub ?hub is supported",
+            "the hub ?hub is jacked up",
+            "the nut ?nut is loosened",
+            "the robot is holding the nut ?nut"
+        ],
+        "translated_effects": [
+            "the hub ?hub is not fastened",
+            "the hub ?hub is unfastened",
+            "the robot is holding the nut ?nut",
+            "the nut ?nut is not loosened"
+        ]
+    },
+    "Fasten a hub": {
+        "parameters": [
+            "?hub - hub: the hub to fasten",
+            "?nut - nut: the nut to put on the hub"
+        ],
+        "preconditions": "(and\n  (robot-holding ?nut)\n  (object-in-container ?nut ?hub)\n  (hub-jacked-up ?hub)\n  (hub-unfastened ?hub)\n)",
+        "effects": "(and\n  (not (robot-holding ?nut))\n  (nut-on-hub ?nut ?hub)\n  (hub-fastened ?hub)\n)",
+        "action_desc": "This action enables the robot to fasten a hub. To achieve this, the robot needs to first put a nut on the hub and then fasten the hub. For example, the robot can fasten hub_1 that has nut_1. Note that although the robot needs to install a nut into the hub, but the robot is not required to tighten the nut in this action. To safely perform this action, the hub needs to be jacked up.",
+        "translated_preconditions": [
+            "the robot is holding the object ?nut",
+            "the object ?nut is in the container ?hub",
+            "the hub ?hub is jacked up",
+            "the hub ?hub is unfastened"
+        ],
+        "translated_effects": [
+            "the robot is not holding the object ?nut",
+            "the nut ?nut is placed on the hub ?hub",
+            "the hub ?hub is fastened"
+        ]
+    },
+    "Remove wheel from hub": {
+        "parameters": [
+            "?wheel - wheel: the wheel to remove from the hub",
+            "?hub - hub: the hub from which the wheel is to be removed"
+        ],
+        "preconditions": "(and\n  (wheel-on-hub ?wheel ?hub)\n  (hub-jacked-up ?hub)\n  (hub-unfastened ?hub)\n)",
+        "effects": "(and\n  (not (wheel-on-hub ?wheel ?hub))\n  (wheel-intact ?wheel)\n)",
+        "action_desc": "This action enables the robot to remove a wheel from a hub. For example, the robot can remove wheel_1 from hub_1. Note that the hub needs to be unfastened in order to remove the wheel. To safely perform this action, the hub needs to be jacked up.",
+        "translated_preconditions": [
+            "the wheel ?wheel is placed on the hub ?hub",
+            "the hub ?hub is jacked up",
+            "the hub ?hub is unfastened"
+        ],
+        "translated_effects": [
+            "the wheel ?wheel is not placed on the hub ?hub",
+            "the wheel ?wheel is intact"
+        ]
+    },
+    "Put wheel on hub": {
+        "parameters": [
+            "?wheel - wheel: the wheel to put on the hub",
+            "?hub - hub: the hub to put the wheel on"
+        ],
+        "preconditions": "(and\n  (robot-holding ?wheel)\n  (hub-jacked-up ?hub)\n  (hub-unfastened ?hub)\n)",
+        "effects": "(and\n  (not (robot-holding ?wheel))\n  (wheel-on-hub ?wheel ?hub)\n  (wheel-intact ?wheel)\n  (wheel-inflated ?wheel)\n  (hub-fastened ?hub)\n)",
+        "action_desc": "This action enables the robot to put a wheel on an unfastened hub. For example, the robot can put wheel_1 on hub_1. Note that the hub needs to be unfastened in order to put on the wheel. To safely perform this action, the hub needs to be jacked up.",
+        "translated_preconditions": [
+            "the robot is holding the object ?wheel",
+            "the hub ?hub is jacked up",
+            "the hub ?hub is unfastened"
+        ],
+        "translated_effects": [
+            "the robot is not holding the wheel ?wheel",
+            "the wheel ?wheel is placed on the hub ?hub",
+            "the wheel ?wheel is intact",
+            "the wheel ?wheel is inflated",
+            "the hub ?hub is fastened"
+        ]
+    },
+    "Inflate wheel": {
+        "parameters": [
+            "?wheel - wheel: the wheel to inflate"
+        ],
+        "preconditions": "(and\n  (wheel-intact ?wheel)\n  (wheel-on-hub ?wheel ?hub)\n  (hub-fastened ?hub)\n)",
+        "effects": "(and\n  (wheel-inflated ?wheel)\n)",
+        "action_desc": "This action enables the robot to inflate a wheel. For example, the robot can inflate wheel_1. You also need to make sure the wheel is intact.",
+        "translated_preconditions": [
+            "the wheel ?wheel is intact",
+            "the wheel ?wheel is placed on the hub ?hub",
+            "the hub ?hub is fastened"
+        ],
+        "translated_effects": [
+            "the wheel ?wheel is inflated"
+        ]
+    }
+}

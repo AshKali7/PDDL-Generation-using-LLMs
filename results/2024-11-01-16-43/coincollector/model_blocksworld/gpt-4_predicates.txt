@@ -1,0 +1,7 @@
+(agent-at ?loc - location): true if the agent is at the location ?loc
+(connected ?from - location ?to - location ?dir - direction): true if location ?from is connected to location ?to in direction ?dir
+(door-open ?from - location ?to - location): true if the door between location ?from and location ?to is open
+(visited ?loc - location): true if the agent has visited the location ?loc
+(door-closed ?from - location ?to - location): true if the door between location ?from and location ?to is closed. This is the negation of the predicate (door-open ?from ?to).
+(coin-at ?loc - location): true if the coin is at the location ?loc
+(agent-has-coin): true if the agent has picked up the coin

@@ -1,0 +1,33 @@
+(container-open ?x - container): true if the container ?x is open
+(container-open ?x - container): true if the container ?x is open
+(object-in ?x - small_object): true if the object ?x is inside the container
+(object-in ?x - small_object): true if the object ?x is inside a container
+(object-in ?x - small_object): true if the object ?x is inside the container
+(container-open ?x - container): true if the container ?x is open
+(hub-jacked-up ?y - hub): true if the hub ?y is jacked up
+(nut-tightened ?x - nut): true if the nut ?x has been tightened
+(hub-jacked-up ?y - hub): true if the hub ?y is jacked up
+(hub-jacked-up ?y - hub): true if the hub ?y is jacked up
+(nut-tightened ?x - nut): true if the nut ?x has been tightened
+(hub-fastened ?x - hub): true if the hub ?x is fastened
+(robot-holding ?x - small_object): true if the robot arm is holding the object ?x
+(object-in ?x - small_object): true if the object ?x is inside a container
+(hub-fastened ?x - hub): true if the hub ?x is fastened
+(object-in ?x - small_object): true if the object ?x is inside a container
+(wheel-intact ?x - wheel): true if the wheel ?x is intact
+(wheel-deflated ?x - wheel): true if the wheel ?x is deflated
+(container-open ?x - container): true if the container ?x is open
+(object-in ?x - small_object): true if the object ?x is inside the container
+(nut-tightened ?x - nut): true if the nut ?x has been tightened
+(robot-holding ?x - small_object): true if the robot arm is holding the object ?x
+(hub-jacked-up ?y - hub): true if the hub ?y is jacked up
+(hub-fastened ?y - hub): true if the hub ?y is fastened
+(wheel-intact ?y - wheel): true if the wheel ?y is intact
+(robot-holding ?x - small_object): true if the robot arm is holding the object ?x
+(object-in ?x - tool): true if the object ?x is a tool
+(hub-jacked-up ?x - hub): true if the hub ?x is jacked up
+(nut-tightened ?y - nut): true if the nut ?y has been tightened
+(object-in ?x - small_object): true if the object ?x is inside a container
+(robot-holding ?x - small_object): true if the robot arm is holding the object ?x
+(hub-fastened ?x - hub): true if the hub ?x is fastened
+(wheel-inflated ?x - wheel): true if the wheel ?x has been inflated
